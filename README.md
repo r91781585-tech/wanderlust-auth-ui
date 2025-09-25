@@ -1,27 +1,44 @@
-# Wanderlust Auth UI 🌍
+# 🌍 Wanderlust Auth UI - Travellista Tours
 
-A modern, responsive travel website authentication interface featuring elegant design, smooth animations, and comprehensive user experience.
+A modern, responsive authentication interface for travel websites built with Next.js 14, TypeScript, and Tailwind CSS. Features a beautiful split-screen design with travel imagery and comprehensive authentication flows.
+
+![Wanderlust Auth UI](https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
 
 ## ✨ Features
 
-- **Modern Design**: Clean, professional interface with travel-themed aesthetics
-- **Responsive Layout**: Fully responsive design that works on all devices
-- **Dual Authentication**: Login and signup forms with smooth transitions
-- **Social Login**: Integration-ready Google, Facebook, and Apple login buttons
-- **Form Validation**: Client-side validation with user-friendly error messages
-- **Smooth Animations**: Subtle animations and transitions for enhanced UX
-- **Professional Imagery**: High-quality travel photography from Unsplash
-- **Accessibility**: Keyboard navigation and screen reader friendly
+### 🎨 Design & UI
+- **Split-screen layout** with stunning travel imagery
+- **Responsive design** that works on all devices
+- **Blue gradient theme** matching travel aesthetics
+- **Smooth animations** with Framer Motion
+- **Custom decorative elements** and patterns
+- **Professional typography** with Poppins and Playfair Display
 
-## 🎨 Design Elements
+### 🔐 Authentication Features
+- **Login Form** with email/password validation
+- **Registration Form** with confirmation fields
+- **Forgot Password** with email reset flow
+- **Social Login** buttons (Google, Facebook, Apple)
+- **Form validation** with Zod schemas
+- **Toast notifications** for user feedback
+- **Loading states** and error handling
 
-- **Color Scheme**: Professional blue gradient (#1e88e5 to #42a5f5)
-- **Typography**: Poppins font family for modern readability
-- **Icons**: Font Awesome icons for consistent visual language
-- **Layout**: Split-screen design with hero section and authentication forms
-- **Decorative Elements**: Geometric patterns, airplane animations, and landmark icons
+### 🛠 Technical Stack
+- **Next.js 14** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **React Hook Form** for form management
+- **Zod** for schema validation
+- **Framer Motion** for animations
+- **Lucide React** for icons
 
 ## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 
 1. **Clone the repository**
    ```bash
@@ -29,111 +46,162 @@ A modern, responsive travel website authentication interface featuring elegant d
    cd wanderlust-auth-ui
    ```
 
-2. **Open in browser**
+2. **Install dependencies**
    ```bash
-   # Simply open index.html in your preferred browser
-   open index.html
+   npm install
    # or
-   python -m http.server 8000  # For local server
+   yarn install
    ```
 
-3. **Start customizing**
-   - Modify colors in `styles.css`
-   - Update content in `index.html`
-   - Add backend integration in `script.js`
+3. **Run the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📁 Project Structure
 
 ```
 wanderlust-auth-ui/
-├── index.html          # Main HTML structure
-├── styles.css          # Complete styling and responsive design
-├── script.js           # JavaScript functionality and interactions
-└── README.md           # Project documentation
+├── app/                          # Next.js App Router
+│   ├── globals.css              # Global styles
+│   ├── layout.tsx               # Root layout
+│   └── page.tsx                 # Main page with auth switching
+├── components/
+│   ├── auth/                    # Authentication components
+│   │   ├── AuthLayout.tsx       # Split-screen layout
+│   │   ├── LoginForm.tsx        # Login form
+│   │   ├── SignupForm.tsx       # Registration form
+│   │   └── ForgotPasswordForm.tsx # Password reset
+│   ├── common/                  # Shared components
+│   │   └── DecorativeElements.tsx # UI decorations
+│   ├── providers/               # Context providers
+│   │   └── NotificationProvider.tsx # Toast notifications
+│   └── ui/                      # Reusable UI components
+│       ├── Button.tsx           # Custom button
+│       ├── Input.tsx            # Form input
+│       └── SocialButton.tsx     # Social login buttons
+├── hooks/                       # Custom React hooks
+│   ├── useAuth.ts              # Authentication logic
+│   └── useNotification.ts      # Notification management
+├── lib/                        # Utilities
+│   ├── utils.ts                # Helper functions
+│   └── validations.ts          # Zod schemas
+└── types/                      # TypeScript definitions
+    └── auth.ts                 # Auth-related types
 ```
+
+## 🎯 Key Components
+
+### AuthLayout
+The main layout component featuring:
+- Split-screen design with travel imagery
+- Responsive breakpoints
+- Decorative elements and branding
+- "Travellista Tours" branding with tagline
+
+### Authentication Forms
+- **LoginForm**: Email/password with social login options
+- **SignupForm**: Registration with confirmation fields
+- **ForgotPasswordForm**: Password reset with email verification
+
+### UI Components
+- **Button**: Multiple variants with loading states
+- **Input**: Form inputs with icons and validation
+- **SocialButton**: Branded social login buttons
+
+## 🎨 Design System
+
+### Colors
+- **Primary Blue**: `#2196f3` (Material Blue 500)
+- **Blue Gradient**: From `#42a5f5` to `#1565c0`
+- **Success**: `#4caf50`
+- **Error**: `#f44336`
+- **Warning**: `#ff9800`
+
+### Typography
+- **Primary**: Poppins (sans-serif)
+- **Headings**: Playfair Display (serif)
+- **Weights**: 300, 400, 500, 600, 700
+
+### Spacing & Layout
+- **Container**: Max-width 6xl (1152px)
+- **Form Width**: Max-width md (448px)
+- **Padding**: Responsive 4-12 units
+- **Border Radius**: 12-24px for modern look
 
 ## 🔧 Customization
 
 ### Changing Colors
-Update the CSS variables in `styles.css`:
-```css
-/* Primary blue gradient */
-background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 100%);
+Update the color scheme in `tailwind.config.ts`:
 
-/* Button colors */
-.login-btn {
-    background: #42a5f5;
+```typescript
+colors: {
+  primary: {
+    // Your custom color palette
+    500: '#your-color',
+  }
 }
 ```
 
-### Adding Backend Integration
-Modify the form handlers in `script.js`:
-```javascript
-function handleLogin(e) {
-    e.preventDefault();
-    // Add your API call here
-    fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    });
-}
+### Adding New Social Providers
+1. Add provider to `SocialButton.tsx`
+2. Update the `handleSocialLogin` functions
+3. Add provider icons and styling
+
+### Form Validation
+Modify validation schemas in `lib/validations.ts`:
+
+```typescript
+export const customSchema = z.object({
+  // Your validation rules
+})
 ```
 
-### Updating Content
-Change the brand name and messaging in `index.html`:
-```html
-<h1 class="brand-title">Your Brand</h1>
-<p class="brand-subtitle">Your custom tagline here</p>
-```
+## 📱 Responsive Design
 
-## 📱 Responsive Breakpoints
-
-- **Desktop**: 1024px and above
-- **Tablet**: 768px - 1023px
-- **Mobile**: 480px - 767px
-- **Small Mobile**: Below 480px
-
-## 🎯 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+The interface adapts seamlessly across devices:
+- **Desktop**: Full split-screen layout
+- **Tablet**: Stacked layout with maintained proportions
+- **Mobile**: Single column with optimized spacing
 
 ## 🔒 Security Features
 
-- Input validation and sanitization
-- CSRF protection ready
-- Secure form handling
-- Password strength indicators (ready for implementation)
-
-## 🎨 Design Inspiration
-
-This design is inspired by modern travel applications with focus on:
-- Clean, minimalist aesthetics
-- Professional color schemes
-- Intuitive user experience
-- Mobile-first responsive design
+- **Client-side validation** with Zod schemas
+- **Password strength requirements**
+- **Email format validation**
+- **CSRF protection ready**
+- **Sanitized inputs**
 
 ## 🚀 Deployment
 
-### GitHub Pages
-1. Go to repository Settings
-2. Navigate to Pages section
-3. Select source branch (main)
-4. Your site will be available at: `https://username.github.io/wanderlust-auth-ui`
+### Vercel (Recommended)
+```bash
+npm run build
+vercel --prod
+```
 
 ### Netlify
-1. Connect your GitHub repository
-2. Deploy automatically on push
-3. Custom domain support available
+```bash
+npm run build
+# Deploy the .next folder
+```
 
-### Vercel
-1. Import GitHub repository
-2. Zero-config deployment
-3. Automatic HTTPS and CDN
+### Docker
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
 
 ## 🤝 Contributing
 
@@ -145,22 +213,19 @@ This design is inspired by modern travel applications with focus on:
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- **Unsplash** for high-quality travel photography
-- **Font Awesome** for beautiful icons
-- **Google Fonts** for Poppins typography
-- **Travel community** for design inspiration
+- **Unsplash** for beautiful travel imagery
+- **Lucide** for clean, consistent icons
+- **Tailwind CSS** for utility-first styling
+- **Framer Motion** for smooth animations
 
 ## 📞 Support
 
-If you have any questions or need help with customization:
-- Open an issue on GitHub
-- Check the documentation
-- Review the code comments
+For support, email support@travellista.com or join our Slack channel.
 
 ---
 
-**Made with ❤️ for the travel community**
+**Built with ❤️ for travelers by travelers** 🌍✈️
